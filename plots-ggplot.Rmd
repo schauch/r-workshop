@@ -5,6 +5,38 @@ date: '2022-02-25'
 output: html_document
 ---
 
+```{r load packages}
+library(tidyverse)
+library(readxl)
+library(here)
+```
+
+```{r load data}
+ca_np <- read_csv(here("data", "ca_np.csv"))
+ci_np <- read_excel(here("data", "ci_np.xlsx"))
+names(ca_np)
+summary(ca_np)
+summary(ci_np)
+```
+
+```{r graphs}
+gg_base <- ggplot(data = ci_np, aes(x = year, y = visitors))
+gg_base +
+  geom_point()
+gg_base +
+  geom_col()
+gg_base +  
+  geom_area()
+gg_base + 
+  geom_point(
+    aes(size = visitors,
+        color = visitors),
+    alpha = 0.5
+  )
+gg_base + 
+  geom_col(aes(fill = visitors))
+```
+
 # Plots with ggplot2
 
 We are going to make plots in R and it's going to be amazing.
